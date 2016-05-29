@@ -1,0 +1,87 @@
+{
+  "name": "tasks",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "TimeStamp": true
+  },
+  "properties": {
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "effectiveStartDate": {
+      "type": "date"
+    },
+    "status": {
+      "type": "string",
+      "required": true,
+      "default": "defined"
+    },
+    "state": {
+      "type": "string"
+    },
+    "effectiveDuration": {
+      "type": "number"
+    },
+    "criticity": {
+      "type": "number",
+      "default": "0"
+    },
+    "executionOrder": {
+      "type": "number",
+      "required": true,
+      "default": "1"
+    },
+    "responsibles": {
+      "type": [
+        "string"
+      ],
+      "required": true
+    },
+    "history": {
+      "type": [
+        "object"
+      ]
+    },
+    "plannedDuration": {
+      "type": "number",
+      "required": true,
+      "default": "30"
+    },
+    "plannedStartDate": {
+      "type": "date",
+      "required": true
+    },
+    "prerequisites": {
+      "type": [
+        "string"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "id": false,
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "chronograms": {
+      "type": "belongsTo",
+      "model": "Chronogram",
+      "foreignKey": "chronogramId"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

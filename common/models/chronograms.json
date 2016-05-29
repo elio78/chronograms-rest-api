@@ -1,0 +1,66 @@
+{
+  "name": "chronograms",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "TimeStamp": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "plannedStartDate": {
+      "type": "date",
+      "required": true
+    },
+    "effectiveStartDate": {
+      "type": "date"
+    },
+    "status": {
+      "type": "string",
+      "required": true,
+      "default": "defined"
+    },
+    "state": {
+      "type": "string"
+    },
+    "plannedDuration": {
+      "type": "number",
+      "required": true,
+      "default": "30"
+    },
+    "effectiveDuration": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "customers": {
+      "type": "belongsTo",
+      "model": "Customer",
+      "foreignKey": "customerId"
+    },
+    "tasks": {
+      "type": "hasMany",
+      "model": "tasks",
+      "foreignKey": ""
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}
